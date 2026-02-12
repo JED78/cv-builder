@@ -1,76 +1,91 @@
-<h2 class="text-2xl font-bold mb-6 text-gray-800">Skills</h2>
+<div class="max-w-3xl mx-auto px-4 py-8">
 
-<form [formGroup]="skillsForm" class="space-y-6">
-
-  <div formArrayName="skills" class="space-y-6">
-
-    <div
-      *ngFor="let skill of skills.controls; let i = index"
-      [formGroupName]="i"
-      class="p-6 bg-white shadow rounded-xl border border-gray-200 space-y-4"
-    >
-
-      <!-- Habilidad -->
-      <label class="block">
-        <span class="font-semibold text-gray-700">Habilidad</span>
-        <input
-          formControlName="name"
-          class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-        />
-      </label>
-
-      <!-- Error habilidad -->
-      <small
-        *ngIf="skill.get('name')?.invalid && skill.get('name')?.touched"
-        class="text-red-600 text-sm"
-      >
-        La habilidad es obligatoria y debe tener al menos 2 caracteres.
-      </small>
-
-      <!-- Nivel -->
-      <label class="block">
-        <span class="font-semibold text-gray-700">Nivel</span>
-        <select
-          formControlName="level"
-          class="mt-1 w-full border rounded-lg px-3 py-2 bg-white focus:ring-2 focus:ring-blue-400 focus:outline-none"
-        >
-          <option value="Básico">Básico</option>
-          <option value="Intermedio">Intermedio</option>
-          <option value="Avanzado">Avanzado</option>
-          <option value="Experto">Experto</option>
-        </select>
-      </label>
-
-      <!-- Error nivel -->
-      <small
-        *ngIf="skill.get('level')?.invalid && skill.get('level')?.touched"
-        class="text-red-600 text-sm"
-      >
-        El nivel es obligatorio.
-      </small>
-
-      <!-- Botón eliminar alineado a la derecha -->
-      <div class="flex justify-end">
-        <button
-          type="button"
-          (click)="removeSkill(i)"
-          class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
-        >
-          Eliminar
-        </button>
-      </div>
-
-    </div>
+  <!-- TÍTULO PRINCIPAL -->
+  <div class="flex items-center gap-3 mb-8">
+    <span class="text-3xl text-yellow-500">🛠️</span>
+    <h2 class="text-2xl font-bold text-gray-800">Skills</h2>
   </div>
 
-  <!-- Botón añadir -->
-  <button
-    type="button"
-    (click)="addSkill()"
-    class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
-  >
-    Añadir skill
-  </button>
-</form>
+  <form [formGroup]="skillsForm" class="space-y-6">
 
-<pre class="mt-6 bg-gray-100 p-4 rounded-lg text-sm">{{ skillsForm.value | json }}</pre>
+    <div formArrayName="skills" class="space-y-6">
+
+      <div
+        *ngFor="let skill of skills.controls; let i = index"
+        [formGroupName]="i"
+        class="p-6 bg-white shadow-lg rounded-xl border border-gray-200 space-y-4"
+      >
+
+        <!-- Subtítulo con icono -->
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-xl text-yellow-500">⭐</span>
+            <h3 class="text-lg font-semibold text-gray-700">Skill {{ i + 1 }}</h3>
+          </div>
+
+          <!-- Botón eliminar -->
+          <button
+            type="button"
+            (click)="removeSkill(i)"
+            class="bg-red-500 text-white px-3 py-1.5 rounded-lg hover:bg-red-600 transition shadow-sm active:scale-95"
+          >
+            Eliminar
+          </button>
+        </div>
+
+        <!-- Habilidad -->
+        <label class="block">
+          <span class="font-semibold text-gray-700">Habilidad</span>
+          <input
+            formControlName="name"
+            class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-yellow-400 focus:outline-none"
+          />
+        </label>
+
+        <!-- Error habilidad -->
+        <small
+          *ngIf="skill.get('name')?.invalid && skill.get('name')?.touched"
+          class="text-red-600 text-sm"
+        >
+          La habilidad es obligatoria y debe tener al menos 2 caracteres.
+        </small>
+
+        <!-- Nivel -->
+        <label class="block">
+          <span class="font-semibold text-gray-700">Nivel</span>
+          <select
+            formControlName="level"
+            class="mt-1 w-full border rounded-lg px-3 py-2 bg-white focus:ring-2 focus:ring-yellow-400 focus:outline-none"
+          >
+            <option value="Básico">Básico</option>
+            <option value="Intermedio">Intermedio</option>
+            <option value="Avanzado">Avanzado</option>
+            <option value="Experto">Experto</option>
+          </select>
+        </label>
+
+        <!-- Error nivel -->
+        <small
+          *ngIf="skill.get('level')?.invalid && skill.get('level')?.touched"
+          class="text-red-600 text-sm"
+        >
+          El nivel es obligatorio.
+        </small>
+
+      </div>
+    </div>
+
+    <!-- Botón añadir -->
+    <button
+      type="button"
+      (click)="addSkill()"
+      class="bg-yellow-500 text-white px-5 py-2 rounded-lg hover:bg-yellow-600 transition shadow active:scale-95"
+    >
+      ➕ Añadir skill
+    </button>
+
+  </form>
+
+  <pre class="mt-6 bg-gray-100 p-4 rounded-lg text-sm">{{ skillsForm.value | json }}</pre>
+
+</div>

@@ -4,6 +4,7 @@ import { CvService } from '../../services/cv.service';
 import { EducationItem } from '../../models/cv.model';
 import { Validators } from '@angular/forms';
 import { NgForOf, JsonPipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-education',
@@ -21,7 +22,8 @@ export class EducationComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private cvService: CvService
+    private cvService: CvService,
+    private toastr: ToastrService
   ) {
     this.educationForm = this.fb.group({
       studies: this.fb.array([]),
@@ -67,6 +69,7 @@ export class EducationComponent implements OnInit {
 
   addStudy(): void {
     this.studies.push(this.createStudyGroup());
+    this.toastr.success('Perfil guardado');
   }
 
   removeStudy(index: number): void {

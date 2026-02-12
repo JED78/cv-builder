@@ -1,114 +1,129 @@
-<h2 class="text-2xl font-bold mb-6 text-gray-800">Experiencia Laboral</h2>
+<div class="max-w-4xl mx-auto px-6 py-8">
 
-<form [formGroup]="experienceForm" class="space-y-6">
-
-  <div formArrayName="jobs" class="space-y-6">
-
-    <div
-      *ngFor="let job of jobs.controls; let i = index"
-      [formGroupName]="i"
-      class="p-6 bg-white shadow rounded-xl border border-gray-200 space-y-4"
-    >
-
-      <!-- Puesto -->
-      <label class="block">
-        <span class="font-semibold text-gray-700">Puesto</span>
-        <input
-          formControlName="role"
-          class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-        />
-        <small
-          *ngIf="job.get('role')?.invalid && job.get('role')?.touched"
-          class="text-red-600 text-sm"
-        >
-          El puesto es obligatorio.
-        </small>
-      </label>
-
-      <!-- Empresa -->
-      <label class="block">
-        <span class="font-semibold text-gray-700">Empresa</span>
-        <input
-          formControlName="company"
-          class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-        />
-        <small
-          *ngIf="job.get('company')?.invalid && job.get('company')?.touched"
-          class="text-red-600 text-sm"
-        >
-          La empresa es obligatoria.
-        </small>
-      </label>
-
-      <!-- Año inicio -->
-      <label class="block">
-        <span class="font-semibold text-gray-700">Año inicio</span>
-        <input
-          formControlName="startYear"
-          type="number"
-          class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-        />
-        <small
-          *ngIf="job.get('startYear')?.invalid && job.get('startYear')?.touched"
-          class="text-red-600 text-sm"
-        >
-          Año inválido.
-        </small>
-      </label>
-
-      <!-- Año fin -->
-      <label class="block">
-        <span class="font-semibold text-gray-700">Año fin</span>
-        <input
-          formControlName="endYear"
-          type="number"
-          class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-        />
-        <small
-          *ngIf="job.get('endYear')?.invalid && job.get('endYear')?.touched"
-          class="text-red-600 text-sm"
-        >
-          Año inválido.
-        </small>
-      </label>
-
-      <!-- Descripción -->
-      <label class="block">
-        <span class="font-semibold text-gray-700">Descripción</span>
-        <textarea
-          formControlName="description"
-          class="mt-1 w-full border rounded-lg px-3 py-2 h-28 resize-none focus:ring-2 focus:ring-blue-400 focus:outline-none"
-        ></textarea>
-        <small
-          *ngIf="job.get('description')?.invalid && job.get('description')?.touched"
-          class="text-red-600 text-sm"
-        >
-          La descripción debe tener al menos 10 caracteres.
-        </small>
-      </label>
-
-      <!-- Botón eliminar alineado a la derecha -->
-      <div class="flex justify-end">
-        <button
-          type="button"
-          (click)="removeJob(i)"
-          class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
-        >
-          Eliminar
-        </button>
-      </div>
-
-    </div>
+  <!-- TÍTULO PRINCIPAL -->
+  <div class="flex items-center gap-3 mb-8">
+    <span class="text-3xl text-purple-600">💼</span>
+    <h2 class="text-2xl font-bold text-gray-800">Experiencia Laboral</h2>
   </div>
 
-  <!-- Botón añadir -->
-  <button
-    type="button"
-    (click)="addJob()"
-    class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
-  >
-    Añadir experiencia
-  </button>
-</form>
+  <form [formGroup]="experienceForm" class="space-y-6">
 
-<pre class="mt-6 bg-gray-100 p-4 rounded-lg text-sm">{{ experienceForm.value | json }}</pre>
+    <div formArrayName="jobs" class="space-y-6">
+
+      <div
+        *ngFor="let job of jobs.controls; let i = index"
+        [formGroupName]="i"
+        class="p-6 bg-white shadow-lg rounded-xl border border-gray-200 space-y-4"
+      >
+
+        <!-- Subtítulo con icono -->
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-xl text-purple-600">🗂️</span>
+            <h3 class="text-lg font-semibold text-gray-700">Experiencia {{ i + 1 }}</h3>
+          </div>
+
+          <!-- Botón eliminar -->
+          <button
+            type="button"
+            (click)="removeJob(i)"
+            class="bg-red-500 text-white px-3 py-1.5 rounded-lg hover:bg-red-600 transition shadow-sm active:scale-95"
+          >
+            Eliminar
+          </button>
+        </div>
+
+        <!-- Puesto -->
+        <label class="block">
+          <span class="font-semibold text-gray-700">Puesto</span>
+          <input
+            formControlName="role"
+            class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+          />
+          <small
+            *ngIf="job.get('role')?.invalid && job.get('role')?.touched"
+            class="text-red-600 text-sm"
+          >
+            El puesto es obligatorio.
+          </small>
+        </label>
+
+        <!-- Empresa -->
+        <label class="block">
+          <span class="font-semibold text-gray-700">Empresa</span>
+          <input
+            formControlName="company"
+            class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+          />
+          <small
+            *ngIf="job.get('company')?.invalid && job.get('company')?.touched"
+            class="text-red-600 text-sm"
+          >
+            La empresa es obligatoria.
+          </small>
+        </label>
+
+        <!-- Año inicio -->
+        <label class="block">
+          <span class="font-semibold text-gray-700">Año inicio</span>
+          <input
+            formControlName="startYear"
+            type="number"
+            class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+          />
+          <small
+            *ngIf="job.get('startYear')?.invalid && job.get('startYear')?.touched"
+            class="text-red-600 text-sm"
+          >
+            Año inválido.
+          </small>
+        </label>
+
+        <!-- Año fin -->
+        <label class="block">
+          <span class="font-semibold text-gray-700">Año fin</span>
+          <input
+            formControlName="endYear"
+            type="number"
+            class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+          />
+          <small
+            *ngIf="job.get('endYear')?.invalid && job.get('endYear')?.touched"
+            class="text-red-600 text-sm"
+          >
+            Año inválido.
+          </small>
+        </label>
+
+        <!-- Descripción -->
+        <label class="block">
+          <span class="font-semibold text-gray-700">Descripción</span>
+          <textarea
+            formControlName="description"
+            class="mt-1 w-full border rounded-lg px-3 py-2 h-28 resize-none focus:ring-2 focus:ring-purple-400 focus:outline-none"
+          ></textarea>
+          <small
+            *ngIf="job.get('description')?.invalid && job.get('description')?.touched"
+            class="text-red-600 text-sm"
+          >
+            La descripción debe tener al menos 10 caracteres.
+          </small>
+        </label>
+
+      </div>
+    </div>
+
+    <!-- Botón añadir -->
+    <button
+      type="button"
+      (click)="addJob()"
+      class="bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition shadow active:scale-95"
+    >
+      ➕ Añadir experiencia
+    </button>
+
+  </form>
+
+  <pre class="mt-6 bg-gray-100 p-4 rounded-lg text-sm">{{ experienceForm.value | json }}</pre>
+
+</div>

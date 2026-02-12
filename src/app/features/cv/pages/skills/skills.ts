@@ -4,7 +4,7 @@ import { NgForOf, JsonPipe } from '@angular/common';
 import { CvService } from '../../services/cv.service';
 import { EducationItem } from '../../models/cv.model';
 import { SkillItem } from '../../models/cv.model';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-skills',
@@ -22,7 +22,8 @@ export class SkillsComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private cvService: CvService
+    private cvService: CvService,
+    private toastr: ToastrService
   ) {
     this.skillsForm = this.fb.group({
       skills: this.fb.array([]),
@@ -46,6 +47,7 @@ export class SkillsComponent implements OnInit {
     this.skillsForm.valueChanges.subscribe(value => {
       const skills: SkillItem[] = value.skills;
       this.cvService.updateSkills(skills);
+      this.toastr.success('Perfil guardado');
     });
   }
 

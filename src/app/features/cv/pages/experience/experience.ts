@@ -3,6 +3,8 @@ import { ReactiveFormsModule, FormArray, FormBuilder, FormGroup, Validators } fr
 import { CvService } from '../../services/cv.service';
 import { ExperienceItem } from '../../models/cv.model';
 import { NgForOf, JsonPipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-experience',
   standalone: true,
@@ -19,7 +21,8 @@ export class ExperienceComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private cvService: CvService
+    private cvService: CvService,
+    private toastr: ToastrService
   ) {
     this.experienceForm = this.fb.group({
       jobs: this.fb.array([]),
@@ -58,6 +61,7 @@ export class ExperienceComponent implements OnInit {
 
   addJob(): void {
     this.jobs.push(this.createJobGroup());
+    this.toastr.success('Perfil guardado');
   }
 
   removeJob(index: number): void {
