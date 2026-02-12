@@ -1,0 +1,99 @@
+<h2 class="text-2xl font-bold mb-6 text-gray-800">Educación</h2>
+
+<form [formGroup]="educationForm" class="space-y-6">
+
+  <div formArrayName="studies" class="space-y-6">
+
+    <div
+      *ngFor="let study of studies.controls; let i = index"
+      [formGroupName]="i"
+      class="p-6 bg-white shadow rounded-xl border border-gray-200 space-y-4"
+    >
+
+      <!-- Título del estudio -->
+      <label class="block">
+        <span class="font-semibold text-gray-700">Título</span>
+        <input
+          formControlName="title"
+          class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+        />
+        <small
+          *ngIf="study.get('title')?.invalid && study.get('title')?.touched"
+          class="text-red-600 text-sm"
+        >
+          El título es obligatorio.
+        </small>
+      </label>
+
+      <!-- Institución -->
+      <label class="block">
+        <span class="font-semibold text-gray-700">Institución</span>
+        <input
+          formControlName="institution"
+          class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+        />
+        <small
+          *ngIf="study.get('institution')?.invalid && study.get('institution')?.touched"
+          class="text-red-600 text-sm"
+        >
+          La institución es obligatoria.
+        </small>
+      </label>
+
+      <!-- Año inicio -->
+      <label class="block">
+        <span class="font-semibold text-gray-700">Año inicio</span>
+        <input
+          formControlName="startYear"
+          type="number"
+          class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+        />
+        <small
+          *ngIf="study.get('startYear')?.invalid && study.get('startYear')?.touched"
+          class="text-red-600 text-sm"
+        >
+          Año inválido.
+        </small>
+      </label>
+
+      <!-- Año fin -->
+      <label class="block">
+        <span class="font-semibold text-gray-700">Año fin</span>
+        <input
+          formControlName="endYear"
+          type="number"
+          class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+        />
+        <small
+          *ngIf="study.get('endYear')?.invalid && study.get('endYear')?.touched"
+          class="text-red-600 text-sm"
+        >
+          Año inválido.
+        </small>
+      </label>
+
+      <!-- Botón eliminar alineado a la derecha -->
+      <div class="flex justify-end">
+        <button
+          type="button"
+          (click)="removeStudy(i)"
+          class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+        >
+          Eliminar
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Botón añadir -->
+  <button
+    type="button"
+    (click)="addStudy()"
+    class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
+  >
+    Añadir estudio
+  </button>
+</form>
+
+<pre class="mt-6 bg-gray-100 p-4 rounded-lg text-sm">{{ educationForm.value | json }}</pre>

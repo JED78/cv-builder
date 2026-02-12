@@ -1,0 +1,115 @@
+<div class="max-w-3xl mx-auto px-4">
+
+  <h2 class="text-2xl font-bold mb-6 text-gray-800">Perfil</h2>
+
+  <form [formGroup]="profileForm" class="space-y-6">
+
+    <!-- FOTO + INPUT -->
+    <div class="flex items-start gap-6">
+
+      <!-- Vista previa de la foto -->
+      <div class="w-32 h-32 rounded-xl overflow-hidden bg-gray-200 border shadow-md flex items-center justify-center relative">
+
+        <img
+          id="profile-photo-preview"
+          [src]="profileForm.value.photo || ''"
+          class="w-full h-full object-cover"
+          alt="Foto de perfil"
+        />
+
+        <span
+          *ngIf="!profileForm.value.photo"
+          class="absolute text-gray-500 text-sm"
+        >
+          Sin foto
+        </span>
+
+      </div>
+
+      <!-- Input de archivo -->
+      <div class="flex-1">
+        <label class="block font-semibold mb-2">Fotografía</label>
+
+        <!-- Botón mejorado -->
+        <label
+          class="cursor-pointer inline-flex items-center justify-center gap-2 
+                 bg-white text-blue-600 border border-blue-600 
+                 px-4 py-2 rounded-lg shadow-sm 
+                 hover:bg-blue-600 hover:text-white hover:shadow-md 
+                 transition active:scale-95 select-none w-auto"
+        >
+          Seleccionar imagen
+
+          <input
+            type="file"
+            accept="image/*"
+            (change)="onPhotoSelected($event)"
+            class="hidden"
+          />
+        </label>
+
+        <p class="text-gray-500 text-xs mt-1">Formatos permitidos: JPG, PNG</p>
+      </div>
+
+    </div>
+
+    <!-- Nombre -->
+    <label class="block">
+      <span class="font-semibold text-gray-700">Nombre</span>
+      <input
+        formControlName="name"
+        class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+      />
+    </label>
+
+    <!-- Apellidos -->
+    <label class="block">
+      <span class="font-semibold text-gray-700">Apellidos</span>
+      <input
+        formControlName="surname"
+        class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+      />
+    </label>
+
+    <!-- Email -->
+    <label class="block">
+      <span class="font-semibold text-gray-700">Email</span>
+      <input
+        formControlName="email"
+        type="email"
+        class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+      />
+    </label>
+
+    <!-- Teléfono -->
+    <label class="block">
+      <span class="font-semibold text-gray-700">Teléfono</span>
+      <input
+        formControlName="phone"
+        class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+      />
+    </label>
+
+    <!-- Descripción -->
+    <label class="block">
+      <span class="font-semibold text-gray-700">Descripción</span>
+      <textarea
+        formControlName="summary"
+        class="mt-1 w-full border rounded-lg px-3 py-2 h-32 resize-none focus:ring-2 focus:ring-blue-400 focus:outline-none"
+      ></textarea>
+    </label>
+
+    <!-- BOTÓN GUARDAR -->
+    <button
+      type="button"
+      (click)="saveProfile()"
+      class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+    >
+      Guardar perfil
+    </button>
+
+  </form>
+
+  <pre class="mt-6 bg-gray-100 p-4 rounded-lg text-sm">{{ profileForm.value | json }}</pre>
+
+</div>

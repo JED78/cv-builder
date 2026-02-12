@@ -1,0 +1,101 @@
+<div class="min-h-screen flex bg-gray-100">
+
+  <!-- Botón para abrir menú (solo móvil) -->
+  <button
+    (click)="toggleMenu()"
+    class="md:hidden fixed top-4 left-4 z-50 bg-blue-600 text-white p-2 rounded-lg shadow hover:bg-blue-700 transition"
+  >
+    <span class="material-icons-outlined">menu</span>
+  </button>
+
+  <!-- Sidebar -->
+  <nav
+    class="
+      fixed md:static inset-y-0 left-0 z-40
+      w-64 bg-gradient-to-b from-white to-gray-50 shadow-xl border-r border-gray-200
+      p-6 flex flex-col gap-6
+      transform transition-transform duration-300
+      md:translate-x-0
+    "
+    [class.-translate-x-full]="!isMenuOpen"
+  >
+
+    <!-- Botón cerrar (solo móvil) -->
+    <button
+      (click)="toggleMenu()"
+      class="md:hidden absolute top-4 right-4 text-gray-600 hover:text-gray-900"
+    >
+      <span class="material-icons-outlined text-3xl">close</span>
+    </button>
+
+    <!-- Logo / Título -->
+    <div class="flex items-center gap-2 mb-4 mt-8 md:mt-0">
+      <div class="w-10 h-10 bg-blue-600 text-white flex items-center justify-center rounded-xl font-bold text-lg shadow">
+        CV
+      </div>
+      <h2 class="text-2xl font-bold text-gray-800">CV Builder</h2>
+    </div>
+
+    <div class="h-px bg-gray-200"></div>
+
+    <!-- Links -->
+    <a
+      routerLink=""
+      routerLinkActive="bg-blue-600 text-white shadow-md"
+      class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition font-medium"
+      (click)="toggleMenu()"
+    >
+      <span class="material-icons-outlined text-xl">dashboard</span>
+      Resumen
+    </a>
+
+    <a
+      routerLink="profile"
+      routerLinkActive="bg-blue-600 text-white shadow-md"
+      class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition font-medium"
+      (click)="toggleMenu()"
+    >
+      <span class="material-icons-outlined text-xl">person</span>
+      Perfil
+    </a>
+
+    <a
+      routerLink="experience"
+      routerLinkActive="bg-blue-600 text-white shadow-md"
+      class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition font-medium"
+      (click)="toggleMenu()"
+    >
+      <span class="material-icons-outlined text-xl">work</span>
+      Experiencia
+    </a>
+
+    <a
+      routerLink="education"
+      routerLinkActive="bg-blue-600 text-white shadow-md"
+      class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition font-medium"
+      (click)="toggleMenu()"
+    >
+      <span class="material-icons-outlined text-xl">school</span>
+      Educación
+    </a>
+
+    <a
+      routerLink="skills"
+      routerLinkActive="bg-blue-600 text-white shadow-md"
+      class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition font-medium"
+      (click)="toggleMenu()"
+    >
+      <span class="material-icons-outlined text-xl">star</span>
+      Skills
+    </a>
+
+  </nav>
+
+  <!-- Content -->
+  <section class="flex-1 p-10 md:ml-0 ml-0">
+    <div class="bg-white shadow-md rounded-xl p-8">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+
+</div>
