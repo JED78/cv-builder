@@ -5,13 +5,14 @@ import { CV } from '../../models/cv.model';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { ToastrService } from 'ngx-toastr';
+import { TemplateService } from '../../services/template.service';
 
 @Component({
   selector: 'app-summary',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './summary.html',
-  styleUrls: ['./summary.css'],
+  styleUrls: ['./summary.css', './templates.css', './template-thumbnails.css'],
 })
 export class SummaryComponent implements OnInit {
 
@@ -28,9 +29,19 @@ export class SummaryComponent implements OnInit {
     skills: []
   };
 
-  constructor(private cvService: CvService, private toastr: ToastrService) {}
+  templates: any[] = [];
+  selectedTemplate: any = null;
+
+  constructor(
+    private cvService: CvService,
+    private templateService: TemplateService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
+    this.templates = this.templateService.templates;
+    this.selectedTemplate = this.templateService.getTemplate();
+
     this.cvService.cv$.subscribe(cv => {
       this.cv = cv;
       console.log('CV actualizado en SummaryComponent:', this.cv);
@@ -41,9 +52,6 @@ export class SummaryComponent implements OnInit {
     this.cvService.resetCV();
   }
 
-  // -------------------------------
-  // 🔵 CONVERSIÓN OKLCH → RGB
-  // -------------------------------
   oklchToRgb(oklch: string): string {
     const regex = /oklch\(\s*([\d.]+)\s+([\d.]+)\s+([\d.]+)\s*\)/i;
     const match = oklch.match(regex);
@@ -54,14 +62,11 @@ export class SummaryComponent implements OnInit {
     let C = parseFloat(match[2]);
     let h = parseFloat(match[3]);
 
-    // Convert hue to radians
     const hr = (h * Math.PI) / 180;
 
-    // Convert OKLCH → OKLab
     const a = C * Math.cos(hr);
     const b = C * Math.sin(hr);
 
-    // OKLab → Linear RGB
     const l_ = L + 0.3963377774 * a + 0.2158037573 * b;
     const m_ = L - 0.1055613458 * a - 0.0638541728 * b;
     const s_ = L - 0.0894841775 * a - 1.2914855480 * b;
@@ -74,7 +79,6 @@ export class SummaryComponent implements OnInit {
     let g = -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s;
     let b2 = -0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s;
 
-    // Clamp
     r = Math.min(1, Math.max(0, r));
     g = Math.min(1, Math.max(0, g));
     b2 = Math.min(1, Math.max(0, b2));
@@ -82,9 +86,6 @@ export class SummaryComponent implements OnInit {
     return `rgb(${Math.round(r * 255)}, ${Math.round(g * 255)}, ${Math.round(b2 * 255)})`;
   }
 
-  // -------------------------------
-  // 🔵 LIMPIAR OKLCH DEL DOM
-  // -------------------------------
   replaceOklchColors(element: HTMLElement) {
     const all = element.querySelectorAll('*');
 
@@ -102,9 +103,6 @@ export class SummaryComponent implements OnInit {
     });
   }
 
-  // -------------------------------
-  // 🔵 EXPORTAR PDF
-  // -------------------------------
   exportPDF() {
     const element = document.getElementById('cv-content');
 
@@ -113,7 +111,6 @@ export class SummaryComponent implements OnInit {
       return;
     }
 
-    // Convertir colores OKLCH antes de capturar
     this.replaceOklchColors(element);
 
     html2canvas(element, {
@@ -131,5 +128,15 @@ export class SummaryComponent implements OnInit {
       pdf.save('Curriculum_Vitae.pdf');
       this.toastr.success('CV almacenado');
     });
+  }
+
+  changeTemplate(event: any) {
+    this.templateService.setTemplate(event.target.value);
+    this.selectedTemplate = this.templateService.getTemplate();
+  }
+
+  changeTemplateById(id: string) {
+    this.templateService.setTemplate(id);
+    this.selectedTemplate = this.templateService.getTemplate();
   }
 }

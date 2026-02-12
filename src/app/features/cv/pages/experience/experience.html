@@ -16,14 +16,13 @@
         class="p-6 bg-white shadow-lg rounded-xl border border-gray-200 space-y-4"
       >
 
-        <!-- Subtítulo con icono -->
+        <!-- Subtítulo -->
         <div class="flex items-center justify-between mb-2">
           <div class="flex items-center gap-2">
             <span class="text-xl text-purple-600">🗂️</span>
             <h3 class="text-lg font-semibold text-gray-700">Experiencia {{ i + 1 }}</h3>
           </div>
 
-          <!-- Botón eliminar -->
           <button
             type="button"
             (click)="removeJob(i)"
@@ -41,7 +40,7 @@
             class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-400 focus:outline-none"
           />
           <small
-            *ngIf="job.get('role')?.invalid && job.get('role')?.touched"
+            *ngIf="job.get('role')?.invalid && (job.get('role')?.touched || job.get('role')?.dirty)"
             class="text-red-600 text-sm"
           >
             El puesto es obligatorio.
@@ -56,7 +55,7 @@
             class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-400 focus:outline-none"
           />
           <small
-            *ngIf="job.get('company')?.invalid && job.get('company')?.touched"
+            *ngIf="job.get('company')?.invalid && (job.get('company')?.touched || job.get('company')?.dirty)"
             class="text-red-600 text-sm"
           >
             La empresa es obligatoria.
@@ -72,7 +71,7 @@
             class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-400 focus:outline-none"
           />
           <small
-            *ngIf="job.get('startYear')?.invalid && job.get('startYear')?.touched"
+            *ngIf="job.get('startYear')?.invalid && (job.get('startYear')?.touched || job.get('startYear')?.dirty)"
             class="text-red-600 text-sm"
           >
             Año inválido.
@@ -88,7 +87,7 @@
             class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-400 focus:outline-none"
           />
           <small
-            *ngIf="job.get('endYear')?.invalid && job.get('endYear')?.touched"
+            *ngIf="job.get('endYear')?.invalid && (job.get('endYear')?.touched || job.get('endYear')?.dirty)"
             class="text-red-600 text-sm"
           >
             Año inválido.
@@ -103,7 +102,7 @@
             class="mt-1 w-full border rounded-lg px-3 py-2 h-28 resize-none focus:ring-2 focus:ring-purple-400 focus:outline-none"
           ></textarea>
           <small
-            *ngIf="job.get('description')?.invalid && job.get('description')?.touched"
+            *ngIf="job.get('description')?.invalid && (job.get('description')?.touched || job.get('description')?.dirty)"
             class="text-red-600 text-sm"
           >
             La descripción debe tener al menos 10 caracteres.
@@ -113,7 +112,6 @@
       </div>
     </div>
 
-    <!-- Botón añadir -->
     <button
       type="button"
       (click)="addJob()"
@@ -122,8 +120,14 @@
       ➕ Añadir experiencia
     </button>
 
-  </form>
+    <button
+      type="button"
+      (click)="save()"
+      class="bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700 transition shadow active:scale-95"
+    >
+      Guardar experiencia
+    </button>
 
-  <pre class="mt-6 bg-gray-100 p-4 rounded-lg text-sm">{{ experienceForm.value | json }}</pre>
+  </form>
 
 </div>

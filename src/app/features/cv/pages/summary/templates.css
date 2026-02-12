@@ -1,0 +1,152 @@
+/* ------------------------------ */
+/* 🌿 PLANTILLA MINIMALISTA — ULTRA LIMPIA, TIPO APPLE */
+/* ------------------------------ */
+
+.template-minimal {
+  font-family: 'Inter', sans-serif;
+  color: #1a1a1a;
+  background: #ffffff;
+  padding: 60px;
+  line-height: 1.7;
+  max-width: 800px;
+  margin: auto;
+}
+
+.template-minimal section {
+  background: none;
+  border-left: 3px solid #000;
+  padding: 10px 20px;
+  margin-bottom: 40px;
+}
+
+.template-minimal h2,
+.template-minimal h3 {
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+}
+
+.template-minimal strong {
+  color: #000;
+}
+
+
+/* ------------------------------ */
+/* 🚀 PLANTILLA MODERNA — TARJETAS, SOMBRAS, ESTILO STARTUP */
+/* ------------------------------ */
+
+.template-modern {
+  font-family: 'Poppins', sans-serif;
+  background: #eef2ff;
+  padding: 50px;
+  color: #333;
+}
+
+.template-modern section {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 30px;
+  margin-bottom: 35px;
+  border: 1px solid #d8def0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.template-modern h2 {
+  color: #4a6cff;
+  font-weight: 800;
+  font-size: 26px;
+}
+
+.template-modern h3 {
+  color: #4a6cff;
+  font-weight: 600;
+}
+
+.template-modern strong {
+  color: #111;
+}
+
+
+/* ------------------------------ */
+/* 🏛️ PLANTILLA CLÁSICA — ESTILO PERIÓDICO / LIBRO ANTIGUO */
+/* ------------------------------ */
+
+.template-classic {
+  font-family: 'Times New Roman', serif;
+  background: #fdf7ef;
+  padding: 60px;
+  color: #2a1f14;
+  line-height: 1.8;
+}
+
+.template-classic section {
+  border: 2px solid #bfa98a;
+  padding: 30px;
+  margin-bottom: 40px;
+  background: #fffaf3;
+}
+
+.template-classic h2,
+.template-classic h3 {
+  font-family: 'Times New Roman', serif;
+  color: #1a120b;
+  border-bottom: 3px solid #1a120b;
+  padding-bottom: 6px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.template-classic strong {
+  color: #000;
+}
+
+
+/* ------------------------------ */
+/* 🎨 PLANTILLA CREATIVA — FORMAS, COLORES, ESTILO POSTER */
+/* ------------------------------ */
+
+.template-creative {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(135deg, #ffecd2, #fcb69f);
+  padding: 50px;
+  color: #2e2e2e;
+}
+
+.template-creative section {
+  background: #ffffff;
+  padding: 35px;
+  margin-bottom: 40px;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Elementos decorativos */
+.template-creative section::before {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: rgba(255, 180, 120, 0.25);
+  border-radius: 50%;
+  top: -40px;
+  right: -40px;
+}
+
+.template-creative h2 {
+  font-weight: 800;
+  color: #ff7a59;
+  font-size: 28px;
+}
+
+.template-creative h3 {
+  font-weight: 700;
+  color: #ff7a59;
+}
+
+.template-creative strong {
+  color: #333;
+}

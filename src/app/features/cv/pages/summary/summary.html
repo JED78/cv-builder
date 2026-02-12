@@ -1,4 +1,70 @@
-<div id="cv-content" class="max-w-4xl mx-auto px-6 py-8">
+<!-- SELECTOR VISUAL DE PLANTILLAS -->
+<div class="template-thumbnails">
+
+  <!-- Minimalista -->
+  <div
+    class="template-thumb"
+    [class.selected]="selectedTemplate?.id === 'minimal'"
+    (click)="changeTemplateById('minimal')"
+  >
+    <div class="template-thumb-preview thumb-minimal">
+      <h4>Nombre Apellido</h4>
+      <p>Perfil profesional breve</p>
+      <hr>
+      <p>Experiencia</p>
+      <p>Educación</p>
+    </div>
+  </div>
+
+  <!-- Moderna -->
+  <div
+    class="template-thumb"
+    [class.selected]="selectedTemplate?.id === 'modern'"
+    (click)="changeTemplateById('modern')"
+  >
+    <div class="template-thumb-preview thumb-modern">
+      <h4>Nombre Apellido</h4>
+      <p>Perfil profesional breve</p>
+      <hr>
+      <p>Experiencia</p>
+      <p>Educación</p>
+    </div>
+  </div>
+
+  <!-- Clásica -->
+  <div
+    class="template-thumb"
+    [class.selected]="selectedTemplate?.id === 'classic'"
+    (click)="changeTemplateById('classic')"
+  >
+    <div class="template-thumb-preview thumb-classic">
+      <h4>Nombre Apellido</h4>
+      <p>Perfil profesional breve</p>
+      <hr>
+      <p>Experiencia</p>
+      <p>Educación</p>
+    </div>
+  </div>
+
+  <!-- Creativa -->
+  <div
+    class="template-thumb"
+    [class.selected]="selectedTemplate?.id === 'creative'"
+    (click)="changeTemplateById('creative')"
+  >
+    <div class="template-thumb-preview thumb-creative">
+      <h4>Nombre Apellido</h4>
+      <p>Perfil profesional breve</p>
+      <hr>
+      <p>Experiencia</p>
+      <p>Educación</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- CONTENEDOR PRINCIPAL DEL CV -->
+<div id="cv-content" [ngClass]="selectedTemplate?.class">
 
   <!-- TÍTULO PRINCIPAL -->
   <div class="flex items-center gap-3 mb-10">
