@@ -1,17 +1,16 @@
 <div class="w-full flex justify-center pt-16 bg-gray-100 px-4 pb-16">
   <div class="w-full max-w-sm bg-white shadow-xl rounded-xl p-6">
 
-
     <!-- Título con iconos -->
-    <div class="flex items-center justify-center gap-3 mb-6">
-      <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+    <div class="flex items-center justify-center gap-3 mb-4">
+      <svg class="w-7 h-7 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
         <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z"/>
       </svg>
-      <h2 class="text-2xl font-bold text-gray-800">Iniciar sesión</h2>
-     
+      <h2 class="text-xl font-bold text-gray-800">Crear cuenta</h2>
+      
     </div>
 
-    <form (ngSubmit)="onLogin()" class="space-y-5">
+    <form (ngSubmit)="onRegister()" class="space-y-4">
 
       <!-- Usuario -->
       <div>
@@ -25,7 +24,7 @@
             [(ngModel)]="username"
             name="username"
             required
-            placeholder="Introduce tu nombre"
+            placeholder="Introduce un nombre de usuario"
             class="w-full bg-transparent outline-none"
           />
         </div>
@@ -43,7 +42,25 @@
             [(ngModel)]="password"
             name="password"
             required
-            placeholder="Introduce tu contraseña"
+            placeholder="Introduce una contraseña"
+            class="w-full bg-transparent outline-none"
+          />
+        </div>
+      </div>
+
+      <!-- Confirmar contraseña -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">Confirmar contraseña</label>
+        <div class="flex items-center gap-2 border rounded-lg px-3 py-2 bg-gray-50">
+          <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 17a2 2 0 100-4 2 2 0 000 4zm6-7h-1V7a5 5 0 00-10 0v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2zm-3 0H9V7a3 3 0 016 0v3z"/>
+          </svg>
+          <input
+            type="password"
+            [(ngModel)]="confirmPassword"
+            name="confirmPassword"
+            required
+            placeholder="Repite la contraseña"
             class="w-full bg-transparent outline-none"
           />
         </div>
@@ -54,15 +71,15 @@
         type="submit"
         class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg shadow-md transition"
       >
-        Entrar
+        Crear cuenta
       </button>
     </form>
 
     <!-- Footer -->
-    <div class="text-center mt-5 text-sm">
-      <span class="text-gray-600">¿No tienes cuenta?</span>
-      <a (click)="goToRegister()" class="text-blue-600 font-semibold cursor-pointer hover:underline">
-        Crear cuenta
+    <div class="text-center mt-4 text-sm">
+      <span class="text-gray-600">¿Ya tienes cuenta?</span>
+      <a (click)="goToLogin()" class="text-blue-600 font-semibold cursor-pointer hover:underline">
+        Iniciar sesión
       </a>
     </div>
 

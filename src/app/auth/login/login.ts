@@ -12,6 +12,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent {
   username = '';
+  password = '';
 
   constructor(
     private auth: AuthService,
@@ -19,7 +20,7 @@ export class LoginComponent {
   ) {}
 
   onLogin() {
-    if (this.username.trim()) {
+    if (this.username.trim() && this.password.trim()) {
       this.auth.fakeLogin(this.username);
       this.router.navigate(['/']);
     }
