@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CvService } from '../../services/cv.service';
 import { CommonModule, JsonPipe } from '@angular/common';
-import { ToastrService } from 'ngx-toastr';
+import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +10,8 @@ import { ToastrService } from 'ngx-toastr';
   imports: [
     ReactiveFormsModule,
     CommonModule,   // Necesario para *ngIf, *ngFor, pipes, etc.
-    JsonPipe
+    JsonPipe,
+    MatSnackBarModule
   ],
   templateUrl: './profile.html',
   styleUrls: ['./profile.css'],
@@ -22,7 +23,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private cvService: CvService,
-    private toastr: ToastrService
+   private snack: MatSnackBar
+
   ) {
     this.profileForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
@@ -47,7 +49,10 @@ export class ProfileComponent implements OnInit {
    
     if (this.profileForm.valid) {
       this.cvService.updateProfile(this.profileForm.value);
-      this.toastr.success('Perfil guardado');
+      this.snack.open('Perfil almacenado', '', {
+  duration: 3000,
+  panelClass: ['snackbar-success']
+});
    
     } else {
       this.profileForm.markAllAsTouched();

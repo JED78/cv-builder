@@ -4,12 +4,14 @@ import { CvService } from '../../services/cv.service';
 import { EducationItem } from '../../models/cv.model';
 import { Validators } from '@angular/forms';
 import { NgForOf, JsonPipe } from '@angular/common';
-import { ToastrService } from 'ngx-toastr';
+import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-education',
   standalone: true,
-  imports: [ReactiveFormsModule, NgForOf, JsonPipe],
+  imports: [ReactiveFormsModule, NgForOf, JsonPipe, MatSnackBarModule
+],
   templateUrl: './education.html',
   styleUrls: ['./education.css'],
 })
@@ -23,7 +25,7 @@ export class EducationComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private cvService: CvService,
-    private toastr: ToastrService
+    private snack: MatSnackBar
   ) {
     this.educationForm = this.fb.group({
       studies: this.fb.array([]),
@@ -70,14 +72,21 @@ export class EducationComponent implements OnInit {
   addStudy(): void {
       if (this.educationForm.invalid) {
     this.educationForm.markAllAsTouched();
-    this.toastr.error('Completa todos los campos antes de guardar');
+    this.snack.open('Completa todos los datos correctamente', '', {
+  duration: 3000,
+  panelClass: ['snackbar-error']
+});
     return;
   }else
 {
-  this.toastr.success('Educación guardada');
+  
 
     this.studies.push(this.createStudyGroup());
-    this.toastr.success('Perfil guardado');
+    this.snack.open('Perfil almacenado', '', {
+  duration: 3000,
+  panelClass: ['snackbar-success']
+});
+
   }
 }
 

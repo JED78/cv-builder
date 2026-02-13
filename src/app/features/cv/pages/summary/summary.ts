@@ -4,13 +4,13 @@ import { CvService } from '../../services/cv.service';
 import { CV } from '../../models/cv.model';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import { ToastrService } from 'ngx-toastr';
 import { TemplateService } from '../../services/template.service';
+import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-summary',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,MatSnackBarModule],
   templateUrl: './summary.html',
   styleUrls: ['./summary.css', './templates.css', './template-thumbnails.css'],
 })
@@ -35,13 +35,13 @@ export class SummaryComponent implements OnInit {
   constructor(
     private cvService: CvService,
     private templateService: TemplateService,
-    private toastr: ToastrService
+    private snack: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     this.templates = this.templateService.templates;
     this.selectedTemplate = this.templateService.getTemplate();
-console.log('CV actualizado en SummaryComponent:', this.cv);
+
     this.cvService.cv$.subscribe(cv => {
       this.cv = cv;
       console.log('CV actualizado en SummaryComponent:', this.cv);
@@ -126,7 +126,11 @@ console.log('CV actualizado en SummaryComponent:', this.cv);
 
       pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
       pdf.save('Curriculum_Vitae.pdf');
-      this.toastr.success('CV almacenado');
+      this.snack.open('Curriculum Vitae almacenado', '', {
+  duration: 3000,
+  panelClass: ['snackbar-success']
+});
+
     });
   }
 

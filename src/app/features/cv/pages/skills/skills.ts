@@ -4,12 +4,11 @@ import { NgForOf, JsonPipe } from '@angular/common';
 import { CvService } from '../../services/cv.service';
 import { EducationItem } from '../../models/cv.model';
 import { SkillItem } from '../../models/cv.model';
-import { ToastrService } from 'ngx-toastr';
-
+import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports: [ReactiveFormsModule, NgForOf,JsonPipe],
+  imports: [ReactiveFormsModule, NgForOf,JsonPipe,MatSnackBarModule],
   templateUrl: './skills.html',
   styleUrls: ['./skills.css'],
 })
@@ -22,8 +21,8 @@ export class SkillsComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private snack: MatSnackBar,
     private cvService: CvService,
-    private toastr: ToastrService
   ) {
     this.skillsForm = this.fb.group({
       skills: this.fb.array([]),
@@ -80,11 +79,18 @@ export class SkillsComponent implements OnInit {
     // Si el último skill NO es válido, marcamos errores y NO añadimos otro
   if (lastSkill.invalid) {
     lastSkill.markAllAsTouched();
-    this.toastr.warning('Revisa los campos');
+    this.snack.open('Revisa los campos', '', {
+  duration: 3000,
+  panelClass: ['snackbar-error']
+});
     return;
   }
     this.skills.push(this.createSkillGroup());
-    this.toastr.success('Datos almacenados');
+    this.snack.open('Datos almacenados', '', {
+  duration: 3000,
+  panelClass: ['snackbar-success']
+});
+
   }
 
   removeSkill(index: number): void {

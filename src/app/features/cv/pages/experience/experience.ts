@@ -3,12 +3,12 @@ import { ReactiveFormsModule, FormArray, FormBuilder, FormGroup, Validators } fr
 import { CvService } from '../../services/cv.service';
 import { ExperienceItem } from '../../models/cv.model';
 import { NgForOf, JsonPipe } from '@angular/common';
-import { ToastrService } from 'ngx-toastr';
+import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-experience',
   standalone: true,
-  imports: [ReactiveFormsModule, NgForOf, JsonPipe],
+  imports: [ReactiveFormsModule, NgForOf, JsonPipe, MatSnackBarModule],
   templateUrl: './experience.html',
   styleUrls: ['./experience.css'],
 })
@@ -23,10 +23,9 @@ export class ExperienceComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private cvService: CvService,
-    private toastr: ToastrService
+    private snack: MatSnackBar
   ) {
 
-    // 🔥 Igual que en Profile: el formulario nace COMPLETO con validaciones
     const savedExperience = this.cvService.getCV().experience;
 
     this.experienceForm = this.fb.group({
@@ -63,39 +62,62 @@ export class ExperienceComponent implements OnInit {
 
   addJob(): void {
     if (this.experienceForm.invalid) {
-       this.markAllJobsAsTouched();
-      this.toastr.error('Revisa los campos');
+      this.markAllJobsAsTouched();
+      this.snack.open('Completa los campos antes de añadir otra experiencia', '', {
+        duration: 3000,
+        panelClass: ['snackbar-error']
+      });
       return;
     }
+
     this.jobs.push(this.createJobGroup());
-    this.toastr.success('Experiencia añadida');
+
+    this.snack.open('Experiencia añadida', '', {
+      duration: 3000,
+      panelClass: ['snackbar-success']
+    });
   }
 
   removeJob(index: number): void {
     this.jobs.removeAt(index);
   }
 
+  // 🔥 Marca TODOS los controles internos correctamente
   markAllJobsAsTouched(): void {
     this.jobs.controls.forEach(group => {
-      (group as FormGroup).markAllAsTouched();
+      const controls = (group as FormGroup).controls;
+      Object.values(controls).forEach(control => {
+        control.markAsTouched();
+        control.updateValueAndValidity();
+      });
     });
   }
 
   save(): void {
-     // Si no hay ningún formulario de experiencia
-  if (this.jobs.length === 0) {
-    this.toastr.error('Añade al menos una experiencia antes de guardar');
-    return;
+
+    // Si no hay ningún formulario
+    if (this.jobs.length === 0) {
+      this.snack.open('Añade al menos una experiencia antes de guardar', '', {
+        duration: 3000,
+        panelClass: ['snackbar-error']
+      });
+      return;
+    }
+
+    // Si los campos están vacíos o inválidos
+    if (this.experienceForm.invalid) {
+      this.markAllJobsAsTouched();
+      this.snack.open('Revisa los campos obligatorios', '', {
+        duration: 3000,
+        panelClass: ['snackbar-error']
+      });
+      return;
+    }
+
+    // Todo correcto
+    this.snack.open('Experiencia guardada', '', {
+      duration: 3000,
+      panelClass: ['snackbar-success']
+    });
   }
-
-  // Si hay formularios pero están incompletos
-  if (this.experienceForm.invalid) {
-    this.markAllJobsAsTouched();
-    this.toastr.error('Revisa los campos');
-    return;
-  }
-
-  this.toastr.success('Experiencia guardada');
-
-}
 }
