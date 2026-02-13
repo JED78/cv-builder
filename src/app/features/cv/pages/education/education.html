@@ -1,7 +1,7 @@
 <div class="max-w-4xl mx-auto px-6 py-8">
 
   <!-- TÍTULO PRINCIPAL -->
-  <div class="flex items-center gap-3 mb-8">
+  <div class="flex items-center gap-3 mb-8 animate-fadeIn">
     <span class="text-3xl text-green-600">🎓</span>
     <h2 class="text-2xl font-bold text-gray-800">Educación</h2>
   </div>
@@ -13,28 +13,29 @@
       <div
         *ngFor="let study of studies.controls; let i = index"
         [formGroupName]="i"
-        class="p-6 bg-white shadow-lg rounded-xl border border-gray-200 space-y-4"
+        class="p-6 bg-white shadow-lg rounded-xl border border-gray-200 space-y-4 animate-slideFade"
       >
 
         <!-- Subtítulo con icono -->
-        <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center justify-between mb-2 animate-fadeIn">
           <div class="flex items-center gap-2">
             <span class="text-xl text-blue-600">📘</span>
             <h3 class="text-lg font-semibold text-gray-700">Estudio {{ i + 1 }}</h3>
           </div>
 
-          <!-- Botón eliminar -->
+        <!-- Botón eliminar -->
           <button
             type="button"
-            (click)="removeStudy(i)"
+            (click)="startRemoveAnimation(i)"
             class="bg-red-500 text-white px-3 py-1.5 rounded-lg hover:bg-red-600 transition shadow-sm active:scale-95"
           >
             Eliminar
           </button>
         </div>
 
+
         <!-- Título del estudio -->
-        <label class="block">
+        <label class="block animate-fadeIn">
           <span class="font-semibold text-gray-700">Título</span>
           <input
             formControlName="title"
@@ -49,7 +50,7 @@
         </label>
 
         <!-- Institución -->
-        <label class="block">
+        <label class="block animate-fadeIn">
           <span class="font-semibold text-gray-700">Institución</span>
           <input
             formControlName="institution"
@@ -64,7 +65,7 @@
         </label>
 
         <!-- Año inicio -->
-        <label class="block">
+        <label class="block animate-fadeIn">
           <span class="font-semibold text-gray-700">Año inicio</span>
           <input
             formControlName="startYear"
@@ -80,7 +81,7 @@
         </label>
 
         <!-- Año fin -->
-        <label class="block">
+        <label class="block animate-fadeIn">
           <span class="font-semibold text-gray-700">Año fin</span>
           <input
             formControlName="endYear"
@@ -102,12 +103,11 @@
     <button
       type="button"
       (click)="addStudy()"
-      class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition shadow active:scale-95"
+      class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition shadow active:scale-95 animate-fadeIn"
     >
       ➕ Añadir estudio
     </button>
 
   </form>
-
 
 </div>

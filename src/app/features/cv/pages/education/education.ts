@@ -68,11 +68,32 @@ export class EducationComponent implements OnInit {
 
 
   addStudy(): void {
+      if (this.educationForm.invalid) {
+    this.educationForm.markAllAsTouched();
+    this.toastr.error('Completa todos los campos antes de guardar');
+    return;
+  }else
+{
+  this.toastr.success('Educación guardada');
+
     this.studies.push(this.createStudyGroup());
     this.toastr.success('Perfil guardado');
   }
+}
 
   removeStudy(index: number): void {
     this.studies.removeAt(index);
   }
+
+  // Animacion para eliminar controles 
+  removingIndex: number | null = null;
+
+startRemoveAnimation(index: number) {
+  this.removingIndex = index;
+
+  setTimeout(() => {
+    this.removeStudy(index);
+    this.removingIndex = null;
+  }, 350);
+}
 }

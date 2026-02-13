@@ -16,3 +16,63 @@ input {
 button {
   margin-top: 0.5rem;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes slideFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideFade {
+  animation: slideFade 0.45s ease-out;
+}
+
+/* Animación al aparecer */
+@keyframes slideFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideFade {
+  animation: slideFade 0.45s ease-out;
+}
+
+/* Animación al eliminar */
+@keyframes removeFade {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+
+.animate-remove {
+  animation: removeFade 0.35s ease-in forwards;
+}
