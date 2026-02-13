@@ -47,7 +47,7 @@ export class SkillsComponent implements OnInit {
     this.skillsForm.valueChanges.subscribe(value => {
       const skills: SkillItem[] = value.skills;
       this.cvService.updateSkills(skills);
-      this.toastr.success('Perfil guardado');
+     
     });
   }
 
@@ -59,7 +59,32 @@ export class SkillsComponent implements OnInit {
 }
 
   addSkill(): void {
+
+    // Si no hay skills aún, simplemente añadimos uno
+  if (this.skills.length === 0) {
     this.skills.push(this.createSkillGroup());
+    return;
+  }
+
+    var lastSkill = null;
+     // Obtenemos el último skill añadido
+     if (this.skills.length == 0)
+     {
+       lastSkill = this.skills.at(0);
+     }
+     else 
+     {
+        lastSkill = this.skills.at(this.skills.length - 1);
+     }
+
+    // Si el último skill NO es válido, marcamos errores y NO añadimos otro
+  if (lastSkill.invalid) {
+    lastSkill.markAllAsTouched();
+    this.toastr.warning('Revisa los campos');
+    return;
+  }
+    this.skills.push(this.createSkillGroup());
+    this.toastr.success('Datos almacenados');
   }
 
   removeSkill(index: number): void {

@@ -104,3 +104,33 @@ button:hover {
   background: linear-gradient(135deg, #f0f0f0, #fafafa);
   border-radius: 12px;
 }
+
+/* Contenedor más pequeño */
+.template-thumb {
+  width: 120px;        /* tamaño del contenedor */
+  height: 160px;
+  padding: 6px;
+  border-radius: 10px;
+  cursor: pointer;
+  overflow: hidden;    /* evita que sobresalga */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  transition: transform 0.2s ease;
+}
+
+/* Escala interna para que la miniatura se vea completa */
+.template-thumb-preview {
+  transform: scale(0.90);   /* reduce SOLO el contenido */
+  transform-origin: top left;
+  width: 220px;             /* tamaño real del preview */
+  height: auto;
+  pointer-events: none;     /* evita clics dentro */
+}
+
+/* Cuando está seleccionada */
+.template-thumb.selected {
+  border: 2px solid #4f46e5;
+  transform: scale(1.05);
+}

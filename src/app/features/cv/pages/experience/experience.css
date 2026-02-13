@@ -17,3 +17,54 @@ textarea {
 button {
   margin-top: 0.5rem;
 }
+
+/* Posición arriba a la derecha */
+#toast-container {
+  top: 1rem !important;
+  right: 1rem !important;
+  bottom: auto !important;
+  left: auto !important;
+  position: fixed !important;
+  z-index: 999999 !important;
+}
+
+/* Estilo general del toast */
+#toast-container .toast {
+  border-radius: 16px !important; /* un poco más redondeado */
+  overflow: hidden !important;
+  padding: 25px 35px !important;  /* MÁS ESPACIO */
+  font-size: 18px !important;     /* un pelín más grande */
+  box-shadow: 0 6px 16px rgba(0,0,0,0.18) !important;
+  border: 2px solid transparent !important;
+  min-width: 300px !important;    /* asegura un ancho mínimo elegante */
+}
+
+/* Toast de éxito */
+#toast-container .toast-success {
+  background-color: #d4f8d4 !important; /* verde claro */
+  color: #1a3d1a !important;            /* verde oscuro */
+  border-color: #6ecb6e !important;     /* borde verde elegante */
+}
+
+/* Barra de progreso */
+#toast-container .toast-success .toast-progress {
+  background-color: #4caf50 !important;
+  height: 4px !important;
+  border-radius: 0 0 16px 16px !important;
+}
+
+/* Eliminar la X o cualquier icono */
+#toast-container .toast-close-button,
+#toast-container .toast-close-button::before {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Animación */
+#toast-container .toast {
+  animation: fadeInUp 0.35s ease-out;
+}

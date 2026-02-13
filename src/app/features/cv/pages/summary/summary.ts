@@ -41,7 +41,7 @@ export class SummaryComponent implements OnInit {
   ngOnInit(): void {
     this.templates = this.templateService.templates;
     this.selectedTemplate = this.templateService.getTemplate();
-
+console.log('CV actualizado en SummaryComponent:', this.cv);
     this.cvService.cv$.subscribe(cv => {
       this.cv = cv;
       console.log('CV actualizado en SummaryComponent:', this.cv);

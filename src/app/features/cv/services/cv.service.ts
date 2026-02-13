@@ -9,6 +9,8 @@ export class CvService {
   private storageKey = 'cv-data';
 
   private cvState: CV = {
+    photo: null,   // <-- FOTO AÑADIDA
+
     profile: {
       name: '',
       surname: '',
@@ -69,6 +71,12 @@ export class CvService {
     this.emit();
   }
 
+  // NUEVO: actualizar foto
+  updatePhoto(photoBase64: string) {
+    this.cvState.photo = photoBase64;
+    this.emit();
+  }
+
   // Obtener el CV completo
   getCV(): CV {
     return this.cvState;
@@ -82,21 +90,23 @@ export class CvService {
 
   // Borrar localStorage y resetear estado
   resetCV() {
-  localStorage.removeItem(this.storageKey);
+    localStorage.removeItem(this.storageKey);
 
-  this.cvState = {
-    profile: {
-      name: '',
-      surname: '',
-      email: '',
-      phone: '',
-      summary: '',
-    },
-    education: [],
-    experience: [],
-    skills: [],
-  };
+    this.cvState = {
+      photo: null,   // <-- FOTO RESETEADA
 
-  this.emit();
-}
+      profile: {
+        name: '',
+        surname: '',
+        email: '',
+        phone: '',
+        summary: '',
+      },
+      education: [],
+      experience: [],
+      skills: [],
+    };
+
+    this.emit();
+  }
 }

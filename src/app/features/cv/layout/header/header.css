@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  padding: 12px 24px;
+  padding: 6px 20px;          /* ↓ antes 12px 24px */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,20 +11,20 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;                   /* ↓ antes 8px */
   cursor: pointer;
 }
 
 .menu {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;                  /* ↓ antes 20px */
 }
 
 .menu-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;                   /* ↓ antes 6px */
   cursor: pointer;
 }
 
@@ -44,15 +44,15 @@
 
 .mobile-menu {
   position: absolute;
-  top: 70px;
+  top: 60px;                  /* ↓ antes 70px */
   right: 20px;
   background: white;
-  padding: 16px;
+  padding: 12px;              /* ↓ antes 16px */
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;                  /* ↓ antes 12px */
 }
 
 @media (min-width: 768px) {

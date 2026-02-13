@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "tailwindcss";
 
 /* Posición arriba a la derecha */
 #toast-container {
@@ -81,4 +80,11 @@
 body {
   background: var(--bg-color);
   color: var(--text-color);
+}
+
+
+@import "tailwindcss";
+
+#toast-container * {
+  all: revert !important;
 }

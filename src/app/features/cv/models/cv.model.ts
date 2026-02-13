@@ -33,8 +33,19 @@ export interface SkillItem {
 
 // Modelo general del CV
 export interface CV {
-  profile: Profile;
+  photo?: string | null;   // <--- AÑADIDO
+
+  profile: {
+    name: string;
+    surname: string;
+    email: string;
+    phone: string;
+    summary: string;
+    photo?: string | null;
+  };
+
   education: EducationItem[];
   experience: ExperienceItem[];
   skills: SkillItem[];
 }
+

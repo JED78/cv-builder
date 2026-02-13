@@ -82,12 +82,20 @@ export class ExperienceComponent implements OnInit {
   }
 
   save(): void {
-    if (this.experienceForm.invalid) {
-      this.markAllJobsAsTouched();
-      this.toastr.error('Revisa los campos');
-      return;
-    }
-
-    this.toastr.success('Experiencia guardada');
+     // Si no hay ningún formulario de experiencia
+  if (this.jobs.length === 0) {
+    this.toastr.error('Añade al menos una experiencia antes de guardar');
+    return;
   }
+
+  // Si hay formularios pero están incompletos
+  if (this.experienceForm.invalid) {
+    this.markAllJobsAsTouched();
+    this.toastr.error('Revisa los campos');
+    return;
+  }
+
+  this.toastr.success('Experiencia guardada');
+
+}
 }
