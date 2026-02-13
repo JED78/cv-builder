@@ -1,0 +1,28 @@
+.sidebar-azul {
+  background-color: #e3f0ff; /* azul suave */
+  color: #003366;
+}
+
+/* Para que los iconos y textos cambien también */
+.sidebar-azul a,
+.sidebar-azul span,
+.sidebar-azul svg {
+  color: #003366;
+}
+
+.fondo-blanco {
+  background-color: #f3f4f6; /* equivalente a bg-gray-100 */
+}
+
+.fondo-azul {
+  background-color: #e3f0ff; /* azul suave */
+}
+
+.layout-fondo {
+  background-color: #e3f0ff; /* azul suave */
+}
+
+#menulateral nav {
+  background-color: white !important;
+}
+

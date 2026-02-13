@@ -1,4 +1,5 @@
-<header class="header">
+<header class="header" [ngClass]="{ 'header-azul': temaAzul }">
+
     <!-- Logo / Título -->
     <div class="flex items-center gap-2 mb-4 mt-8 md:mt-0">
       <div class="w-10 h-10 bg-blue-600 text-white flex items-center justify-center rounded-xl font-bold text-lg shadow">
@@ -18,7 +19,7 @@
     </div>
 
     <!-- Modo oscuro -->
-    <button class="menu-item" (click)="toggleDarkMode()">
+    <button class="menu-item" (click)="cambiarTema()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 3a1 1 0 011 1v1a1 1 0 11-2 0V4a1 1 0 011-1zm0 15a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm9-7a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5 12a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zm12.95 6.536a1 1 0 01-1.414 0l-.707-.707a1 1 0 111.414-1.414l.707.707a1 1 0 010 1.414zM7.172 7.172a1 1 0 01-1.414 0L5.05 6.464A1 1 0 116.464 5.05l.707.707a1 1 0 010 1.414zm10.778-1.414a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM7.172 16.828a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0z"/>
       </svg>

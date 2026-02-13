@@ -1,4 +1,7 @@
-<div class="min-h-screen flex bg-gray-100">
+
+<div id="menulateral" >
+
+
 
   <!-- Botón para abrir menú (solo móvil) -->
   <button
@@ -9,14 +12,17 @@
   </button>
 
   <!-- Sidebar -->
-  <nav
-    class="
-      fixed md:static inset-y-0 left-0 z-40
-      w-64 bg-gradient-to-b from-white to-gray-50 shadow-xl border-r border-gray-200
-      p-6 flex flex-col gap-6
-      transform transition-transform duration-300
-      md:translate-x-0
-    "
+ <nav
+  class="
+    fixed md:static inset-y-0 left-0 z-40
+    w-64 bg-transparent
+    p-6 flex flex-col gap-6
+    transform transition-transform duration-300
+    md:translate-x-0
+  "
+
+
+
     [class.-translate-x-full]="!isMenuOpen"
   >
 

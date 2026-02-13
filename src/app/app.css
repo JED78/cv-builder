@@ -1,0 +1,13 @@
+.contenedor-pagina {
+  min-height: calc(100vh - 60px);
+  padding: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.fondo-blanco {
+  background-color: #ffffff;
+}
+
+.fondo-azul {
+  background-color: #e3f0ff;
+}

@@ -63,3 +63,8 @@
     display: none;
   }
 }
+
+.header-azul {
+  background-color: #e3f0ff; /* azul suave */
+  color: #003366; /* texto azul oscuro */
+}

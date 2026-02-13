@@ -1,2 +1,6 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+<app-header (cambiarTema)="onCambiarTema()"></app-header>
+
+<div [ngClass]="temaAzul ? 'fondo-azul' : 'fondo-blanco'" class="contenedor-pagina">
+  <router-outlet></router-outlet>
+</div>
+

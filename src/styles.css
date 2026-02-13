@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-
 /* Posición arriba a la derecha */
 #toast-container {
   top: 1rem !important;
@@ -13,20 +12,20 @@
 
 /* Estilo general del toast */
 #toast-container .toast {
-  border-radius: 16px !important; /* un poco más redondeado */
+  border-radius: 16px !important;
   overflow: hidden !important;
-  padding: 25px 35px !important;  /* MÁS ESPACIO */
-  font-size: 18px !important;     /* un pelín más grande */
+  padding: 25px 35px !important;
+  font-size: 18px !important;
   box-shadow: 0 6px 16px rgba(0,0,0,0.18) !important;
   border: 2px solid transparent !important;
-  min-width: 300px !important;    /* asegura un ancho mínimo elegante */
+  min-width: 300px !important;
 }
 
 /* Toast de éxito */
 #toast-container .toast-success {
-  background-color: #d4f8d4 !important; /* verde claro */
-  color: #1a3d1a !important;            /* verde oscuro */
-  border-color: #6ecb6e !important;     /* borde verde elegante */
+  background-color: #d4f8d4 !important;
+  color: #1a3d1a !important;
+  border-color: #6ecb6e !important;
 }
 
 /* Barra de progreso */
@@ -36,7 +35,7 @@
   border-radius: 0 0 16px 16px !important;
 }
 
-/* Eliminar la X o cualquier icono */
+/* Eliminar la X */
 #toast-container .toast-close-button,
 #toast-container .toast-close-button::before {
   display: none !important;
@@ -62,13 +61,19 @@
     transform: translateY(0) scale(1);
   }
 }
+
+/* Variables base */
 :root {
   --bg-color: #ffffff;
   --text-color: #222222;
   --header-bg: #ffffff;
   --header-shadow: rgba(0, 0, 0, 0.1);
+
+  --color-fondo: #ffffff;
+  --color-texto: #000000;
 }
 
+/* Tema oscuro */
 .dark-theme {
   --bg-color: #1e1e1e;
   --text-color: #f5f5f5;
@@ -80,6 +85,30 @@
 body {
   background: var(--bg-color);
   color: var(--text-color);
+  background-color: var(--color-fondo);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ❗ CORREGIDO: ya NO aplicamos color global a todo */
+ header,
+app-root, contenedor-pagina,
+app-header,
+app-sidebar,
+app-content,
+.main-container,app-cv-layout
+section,#menulateral, nav{
+  background-color: var(--color-fondo);
+  /* color: var(--color-texto);  ← ELIMINADO */
+}
+
+/* Tema normal */
+#menulateral {
+  background-color: #ffffff;
+}
+
+/* Tema azul */
+body.azul #menulateral {
+  background-color: #e3f0ff !important;
 }
 
 
@@ -109,4 +138,31 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+/* Tema azul */
+.azul {
+  --color-fondo: #e3f0ff;
+  /* --color-texto: #003366;  ← ELIMINADO PARA QUE NO PINTE TODO */
+}
+
+/* Fondo del layout */
+body.azul .layout-fondo {
+  background-color: #e3f0ff !important;
+}
+
+body:not(.azul) .layout-fondo {
+  background-color: #f3f4f6 !important;
+}
+
+/* Tema azul */
+body.azul .fondo-blanco,
+body.azul .contenedor-pagina {
+  background-color: #e3f0ff !important;
+}
+
+/* Tema normal */
+body:not(.azul) .fondo-blanco,
+body:not(.azul) .contenedor-pagina {
+  background-color: #ffffff !important;
 }
