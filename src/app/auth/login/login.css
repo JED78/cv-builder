@@ -1,0 +1,16 @@
+.login-footer {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.login-footer a {
+  color: #0078ff;
+  cursor: pointer;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.login-footer a:hover {
+  text-decoration: underline;
+}

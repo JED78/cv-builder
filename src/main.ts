@@ -1,6 +1,15 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
 import { App } from './app/app';
+import { appConfig } from './app/app.config';
+import { provideStore } from '@ngrx/store';
+import { authReducer } from './app/auth/auth.reducer';
 
-bootstrapApplication(App, appConfig)
-  .catch((err) => console.error(err));
+bootstrapApplication(App, {
+  ...appConfig,
+  providers: [
+    ...(appConfig.providers || []),
+    provideStore({
+      auth: authReducer
+    })
+  ]
+}).catch(err => console.error(err));

@@ -63,3 +63,22 @@
     transform: translateY(0) scale(1);
   }
 }
+:root {
+  --bg-color: #ffffff;
+  --text-color: #222222;
+  --header-bg: #ffffff;
+  --header-shadow: rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme {
+  --bg-color: #1e1e1e;
+  --text-color: #f5f5f5;
+  --header-bg: #2a2a2a;
+  --header-shadow: rgba(255, 255, 255, 0.1);
+}
+
+/* Aplicación global */
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+}

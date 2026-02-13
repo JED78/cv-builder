@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { CvLayoutComponent } from '../layout/cv-layout';
 import { Cv } from './cv';
 import { SummaryComponent } from './pages/summary/summary';
-
+import { LoginComponent } from '../../auth/login/login';
 export const CV_ROUTES: Routes = [
   {
     path: '',
@@ -34,6 +34,8 @@ export const CV_ROUTES: Routes = [
         loadComponent: () =>
           import('./pages/summary/summary').then(c => c.SummaryComponent),
       },
+      { path: 'login', component: LoginComponent },
+
     ],
   },
 ];
