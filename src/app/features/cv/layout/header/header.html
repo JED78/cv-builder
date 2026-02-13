@@ -1,0 +1,57 @@
+<header class="header">
+    <!-- Logo / Título -->
+    <div class="flex items-center gap-2 mb-4 mt-8 md:mt-0">
+      <div class="w-10 h-10 bg-blue-600 text-white flex items-center justify-center rounded-xl font-bold text-lg shadow">
+        CV
+      </div>
+      <h2 class="text-2xl font-bold text-gray-800"> Builder</h2>
+    </div>
+
+  <!-- Desktop Menu -->
+  <nav class="menu desktop">
+    <!-- Idioma -->
+    <div class="menu-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2c1.7 0 3.3.5 4.6 1.4L13 11h7c0 1.7-.5 3.3-1.4 4.6L13 13v7c-1.7 0-3.3-.5-4.6-1.4L11 13H4c0-1.7.5-3.3 1.4-4.6L11 11V4z"/>
+      </svg>
+      <span>ES</span>
+    </div>
+
+    <!-- Modo oscuro -->
+    <button class="menu-item" (click)="toggleDarkMode()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 3a1 1 0 011 1v1a1 1 0 11-2 0V4a1 1 0 011-1zm0 15a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm9-7a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5 12a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zm12.95 6.536a1 1 0 01-1.414 0l-.707-.707a1 1 0 111.414-1.414l.707.707a1 1 0 010 1.414zM7.172 7.172a1 1 0 01-1.414 0L5.05 6.464A1 1 0 116.464 5.05l.707.707a1 1 0 010 1.414zm10.778-1.414a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM7.172 16.828a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0z"/>
+      </svg>
+    </button>
+
+    <!-- Ayuda -->
+    <div class="menu-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm1.1-7.3l-.9.9c-.6.6-1.2 1.2-1.2 2.4h-2c0-1.6.7-2.6 1.4-3.3l1.2-1.2A1.5 1.5 0 0012 7a2 2 0 110-4 3.5 3.5 0 013.5 3.5c0 1.4-.7 2.3-1.4 3z"/>
+      </svg>
+    </div>
+
+    <!-- Login -->
+    <div class="menu-item login">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z"/>
+      </svg>
+      <span>Acceder</span>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Button -->
+  <button class="menu-button mobile" (click)="toggleMenu()">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M3 6h18M3 12h18M3 18h18"/>
+    </svg>
+  </button>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" *ngIf="menuOpen">
+    <span>Idioma</span>
+    <span>Modo oscuro</span>
+    <span>Ayuda</span>
+    <span>Acceder</span>
+  </div>
+</header>
